@@ -1,0 +1,9 @@
+C:\Users\iamgo\source\repos\winforms-tacotron-transcription\winforms-tacotron-transcription\bin\Debug\winforms-tacotron-transcription.exe.config
+C:\Users\iamgo\source\repos\winforms-tacotron-transcription\winforms-tacotron-transcription\bin\Debug\winforms-tacotron-transcription.exe
+C:\Users\iamgo\source\repos\winforms-tacotron-transcription\winforms-tacotron-transcription\bin\Debug\winforms-tacotron-transcription.pdb
+C:\Users\iamgo\source\repos\winforms-tacotron-transcription\winforms-tacotron-transcription\obj\Debug\winforms-tacotron-transcription.csprojAssemblyReference.cache
+C:\Users\iamgo\source\repos\winforms-tacotron-transcription\winforms-tacotron-transcription\obj\Debug\winforms_tacotron_transcription.Form1.resources
+C:\Users\iamgo\source\repos\winforms-tacotron-transcription\winforms-tacotron-transcription\obj\Debug\winforms_tacotron_transcription.Properties.Resources.resources
+C:\Users\iamgo\source\repos\winforms-tacotron-transcription\winforms-tacotron-transcription\obj\Debug\winforms-tacotron-transcription.csproj.GenerateResource.cache
+C:\Users\iamgo\source\repos\winforms-tacotron-transcription\winforms-tacotron-transcription\obj\Debug\winforms-tacotron-transcription.exe
+C:\Users\iamgo\source\repos\winforms-tacotron-transcription\winforms-tacotron-transcription\obj\Debug\winforms-tacotron-transcription.pdb
