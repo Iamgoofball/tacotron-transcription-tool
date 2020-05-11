@@ -10,6 +10,12 @@ using System.Windows.Forms;
 using System.Media;
 using System.IO;
 using System.Diagnostics;
+using IBM.Cloud.SDK.Core.Authentication.Iam;
+using IBM.Cloud.SDK.Core.Http;
+using IBM.Watson.SpeechToText.v1.Model;
+using System.Net.Http;
+using IBM.Watson.SpeechToText.v1;
+using NAudio.Wave;
 
 namespace winforms_tacotron_transcription
 {
@@ -101,11 +107,16 @@ namespace winforms_tacotron_transcription
                 current_line_number = 0;
                 SaveTranscriptionButton.Enabled = true;
                 PlayAudioButton.Enabled = true;
+                IBMButton.Enabled = true;
                 NextLineButton.Enabled = true;
                 PreviousLineButton.Enabled = true;
                 TranscriptionBox.Enabled = true;
                 WavName.Enabled = true;
                 loaded_shit = true;
+                if (AutoSPT.Checked)
+                {
+                    IBM_audio_guess();
+                }
                 ChangeLineInBox();
                 UpdateProgressBar();
                 SaveTranscriptionLine();
@@ -120,7 +131,7 @@ namespace winforms_tacotron_transcription
             SaveTranscriptionLine();
             if (up_or_down)
             {
-                if(current_line_number < transcriptions.Count())
+                if((current_line_number + 1) < transcriptions.Count())
                 {
                     current_line_number++;
                     ChangeLineInBox();
@@ -135,6 +146,10 @@ namespace winforms_tacotron_transcription
                     ChangeLineInBox();
                     UpdateProgressBar();
                 }
+            }
+            if (AutoSPT.Checked && TranscriptionBox.TextLength == 0) // don't speech to text already transcribed lines
+            {
+                IBM_audio_guess();
             }
         }
         public void UpdateProgressBar()
@@ -191,6 +206,38 @@ namespace winforms_tacotron_transcription
                 }
             }
         }
+        public void IBM_audio_guess()
+        {
+            if(IBM_APIkey.TextLength == 0 || IBM_URL.TextLength == 0)
+            {
+                return;
+            }
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: IBM_APIkey.Text);
+
+            SpeechToTextService service = new SpeechToTextService(authenticator);
+            service.SetServiceUrl(IBM_URL.Text);
+            var model_to_use = "en-US_BroadbandModel";
+            using (var reader = new WaveFileReader(folder_path + "\\" + transcriptions.ElementAt(current_line_number).Key))
+            {
+                if(reader.WaveFormat.SampleRate < 16000)
+                {
+                    model_to_use = "en-US_NarrowbandModel";
+                }
+            }
+
+            DetailedResponse<SpeechRecognitionResults> result = service.Recognize(
+                audio: File.ReadAllBytes(folder_path + "\\" + transcriptions.ElementAt(current_line_number).Key),
+                contentType: "audio/wav",
+                profanityFilter: false,
+                model: model_to_use
+            );
+            SpeechRecognitionResults results = result.Result;
+            SpeechRecognitionResult final_result = results.Results[0];
+            SpeechRecognitionAlternative real_result = final_result.Alternatives[0];
+            TranscriptionBox.Text = real_result.Transcript;
+            SaveTranscriptionLine();
+        }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             if (keyData == Keys.PageDown && loaded_shit)
@@ -216,6 +263,11 @@ namespace winforms_tacotron_transcription
                 save_file();
             }
             return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private void IBMButton_Click(object sender, EventArgs e)
+        {
+            IBM_audio_guess();
         }
     }
 }

@@ -38,6 +38,12 @@
             this.PreviousLineButton = new System.Windows.Forms.Button();
             this.PlayAudioButton = new System.Windows.Forms.Button();
             this.NewTranscriptionButton = new System.Windows.Forms.Button();
+            this.IBMButton = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.IBM_APIkey = new System.Windows.Forms.TextBox();
+            this.IBM_URL = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.AutoSPT = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // ProgressBarTranscripts
@@ -129,7 +135,7 @@
             this.PlayAudioButton.Enabled = false;
             this.PlayAudioButton.Location = new System.Drawing.Point(575, 102);
             this.PlayAudioButton.Name = "PlayAudioButton";
-            this.PlayAudioButton.Size = new System.Drawing.Size(213, 266);
+            this.PlayAudioButton.Size = new System.Drawing.Size(213, 120);
             this.PlayAudioButton.TabIndex = 11;
             this.PlayAudioButton.Text = "Play Audio (END)";
             this.PlayAudioButton.UseVisualStyleBackColor = true;
@@ -145,11 +151,72 @@
             this.NewTranscriptionButton.UseVisualStyleBackColor = true;
             this.NewTranscriptionButton.Click += new System.EventHandler(this.NewTranscriptionButton_Click);
             // 
+            // IBMButton
+            // 
+            this.IBMButton.Enabled = false;
+            this.IBMButton.Location = new System.Drawing.Point(575, 237);
+            this.IBMButton.Name = "IBMButton";
+            this.IBMButton.Size = new System.Drawing.Size(213, 120);
+            this.IBMButton.TabIndex = 13;
+            this.IBMButton.Text = "Guess Transcription W/ IBM (HOME)";
+            this.IBMButton.UseVisualStyleBackColor = true;
+            this.IBMButton.Click += new System.EventHandler(this.IBMButton_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(9, 432);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(97, 13);
+            this.label1.TabIndex = 14;
+            this.label1.Text = "IBM Cloud API Key";
+            // 
+            // IBM_APIkey
+            // 
+            this.IBM_APIkey.Location = new System.Drawing.Point(12, 448);
+            this.IBM_APIkey.Name = "IBM_APIkey";
+            this.IBM_APIkey.Size = new System.Drawing.Size(553, 20);
+            this.IBM_APIkey.TabIndex = 15;
+            this.IBM_APIkey.UseSystemPasswordChar = true;
+            // 
+            // IBM_URL
+            // 
+            this.IBM_URL.Location = new System.Drawing.Point(12, 487);
+            this.IBM_URL.Name = "IBM_URL";
+            this.IBM_URL.Size = new System.Drawing.Size(553, 20);
+            this.IBM_URL.TabIndex = 17;
+            this.IBM_URL.UseSystemPasswordChar = true;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(9, 471);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(120, 13);
+            this.label2.TabIndex = 16;
+            this.label2.Text = "IBM Cloud Service URL";
+            // 
+            // AutoSPT
+            // 
+            this.AutoSPT.AutoSize = true;
+            this.AutoSPT.Location = new System.Drawing.Point(575, 448);
+            this.AutoSPT.Name = "AutoSPT";
+            this.AutoSPT.Size = new System.Drawing.Size(153, 17);
+            this.AutoSPT.TabIndex = 18;
+            this.AutoSPT.Text = "Automatic Speech-To-Text";
+            this.AutoSPT.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 515);
+            this.Controls.Add(this.AutoSPT);
+            this.Controls.Add(this.IBM_URL);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.IBM_APIkey);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.IBMButton);
             this.Controls.Add(this.NewTranscriptionButton);
             this.Controls.Add(this.PlayAudioButton);
             this.Controls.Add(this.PreviousLineButton);
@@ -181,6 +248,12 @@
         private System.Windows.Forms.Button PreviousLineButton;
         private System.Windows.Forms.Button PlayAudioButton;
         private System.Windows.Forms.Button NewTranscriptionButton;
+        private System.Windows.Forms.Button IBMButton;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox IBM_APIkey;
+        private System.Windows.Forms.TextBox IBM_URL;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.CheckBox AutoSPT;
     }
 }
 
